@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path")
 
 const TestModel = require("./models/TestModel");
 
@@ -7,6 +8,12 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+const staticFiles = express.static(path.join(__dirname, "../client/build"))
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(staticFiles)
+}
 
 app.get("/api/", (req, res, next) => {
   res.json("welcome");
