@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
-import Test from "./Test";
+// import Test from "./Test";
+import LandingMap from "./components/LandingMap";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Test />
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
+        <LandingMap />
+        <div className="main-container">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi iusto voluptatibus illo similique laborum, facilis praesentium enim, molestiae, quisquam sint temporibus? Pariatur, vero. Officia voluptate fuga voluptatem, veritatis sequi asperiores.
+        </div>
+        {/* <Test /> */}
       </div>
     );
   }
