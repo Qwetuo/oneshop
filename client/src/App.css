@@ -14,6 +14,7 @@ body {
   height: 100%;
   width: 100%;
   position: absolute;
+  z-index: -1;
 }
 
 .main-container {
@@ -34,4 +35,24 @@ body {
   padding: 10px;
   margin: 8px;
   border-radius: 25px;
+}
+
+.search-segment-container {
+  position: absolute;
+  top: 45vh;
+  width: 100%;
+  padding: auto;
+}
+
+.search-segment {
+  max-width: 600px;
+  margin: auto;
+}
+
+.search-segment .ui.grid {
+  margin: 1px;
+}
+
+.search-segment h5 {
+  margin: auto 0;
 }
