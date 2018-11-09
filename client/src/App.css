@@ -2,6 +2,10 @@ body {
   background: #dcdcdc;
 }
 
+#map {
+  height: 75vh;
+}
+
 .landing-map {
   overflow: hidden;
   position: relative;
