@@ -35,6 +35,18 @@ body {
   padding: 2px 25px;
 }
 
+.nav-bar-in {
+  margin: 13px;
+}
+
+.nav-bar-in h3, h4 {
+  display: inline;
+}
+
+.nav-bar-in h3 {
+  color: blue;
+}
+
 .nav-bar .button {
   padding: 10px;
   margin: 8px;
@@ -59,4 +71,12 @@ body {
 
 .search-segment h5 {
   margin: auto 0;
+}
+
+.account-modal {
+  padding: 50px;
+}
+
+.text-center{
+  text-align: center;
 }

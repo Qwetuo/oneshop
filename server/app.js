@@ -1,7 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path")
+const path = require("path");
 
+const { errorHandler } = require("./middlewares/errorHandlers");
 const TestModel = require("./models/TestModel");
 
 const app = express();
@@ -9,11 +10,17 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const staticFiles = express.static(path.join(__dirname, "../client/build"))
+const staticFiles = express.static(path.join(__dirname, "../client/build"));
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(staticFiles)
+if (process.env.NODE_ENV === "production") {
+  app.use(staticFiles);
 }
+
+const accountRouter = require("./routes/accountRouter");
+
+accountRouter(app);
+
+app.use(errorHandler);
 
 app.get("/api/", (req, res, next) => {
   res.json("welcome");
