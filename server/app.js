@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const { errorHandler } = require("./middlewares/errorHandlers");
-const TestModel = require("./models/TestModel");
 
 const app = express();
 
@@ -23,25 +22,5 @@ accountRouter(app);
 reviewRouter(app);
 
 app.use(errorHandler);
-
-app.get("/api/", (req, res, next) => {
-  res.json("welcome");
-});
-
-app.post("/api/new", async (req, res, next) => {
-  try {
-    const data = await TestModel.create({
-      data: req.body.data
-    });
-    res.status(201).json(data);
-  } catch (error) {
-    res.json(error);
-  }
-});
-
-app.get("/api/data", async (req, res, next) => {
-  const data = await TestModel.find();
-  res.status(200).json(data);
-});
 
 module.exports = app;
