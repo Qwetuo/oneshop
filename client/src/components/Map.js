@@ -34,7 +34,6 @@ class Map extends Component {
 
     var infowindow = new window.google.maps.InfoWindow();
 
-    // const latlng = map.getCenter();
     var service = new window.google.maps.places.PlacesService(map);
     const request = {
       keyword: this.state.query,
