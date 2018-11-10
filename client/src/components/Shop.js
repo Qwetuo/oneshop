@@ -3,8 +3,8 @@ import { Card } from "semantic-ui-react";
 
 const Shop = props => {
   if (props.results.length > 0) {
-    console.log(props.results[0].geometry.location.toJSON());
-    return props.results.map(result => {
+    const sortedResults = props.results.sort((a,b) => b.rating - a.rating)
+    return sortedResults.map(result => {
       return (
         <Card fluid>
           <Card.Content verticalAlign="middle">
