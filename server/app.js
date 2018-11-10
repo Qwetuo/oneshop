@@ -17,8 +17,10 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const accountRouter = require("./routes/accountRouter");
+const reviewRouter = require("./routes/reviewRouter");
 
 accountRouter(app);
+reviewRouter(app);
 
 app.use(errorHandler);
 
