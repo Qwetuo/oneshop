@@ -3,24 +3,9 @@ import { Grid, Icon, Search, Segment, Select } from "semantic-ui-react";
 
 const options = [
   {
-    key: "1",
-    value: "1",
-    text: "1"
-  },
-  {
-    key: "2",
-    value: "2",
-    text: "2"
-  },
-  {
-    key: "3",
-    value: "3",
-    text: "3"
-  },
-  {
-    key: "4",
-    value: "4",
-    text: "4"
+    key: "wallet",
+    value: "wallet",
+    text: "wallet"
   }
 ];
 
@@ -33,10 +18,13 @@ class SearchSegment extends Component {
             <Grid columns={3} stackable textAlign="center">
               <div>
                 <Icon size="big" color="purple" name="shopping bag" />
-                <Select placeholder="Shop for Category" options={options} />
+                <Select
+                  placeholder="Shop for Category (fixed)"
+                  options={options}
+                />
               </div>
               <h5>at</h5>
-              <Search placeholder="Shops / Mall / ..." />
+              <Search placeholder="Fixed Coord: Raffles City" />
             </Grid>
           </Segment>
         </div>
