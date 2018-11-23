@@ -1,4 +1,12 @@
 const Review = require("../models/Review");
+const Store = require("../models/Store");
+
+const getReviews = async (req, res, next) => {
+  const storeReviews = await Review.find({ for: req.params.store })
+    .populate({ path: "author", select: "username" })
+    .populate({ path: "likes", select: "username" });
+  res.status(200).json(storeReviews);
+};
 
 //todo - write tests for services
 const createReview = async (req, res, next) => {
@@ -29,5 +37,6 @@ const likeReview = async (req, res, next) => {
 
 module.exports = {
   createReview,
-  likeReview
+  likeReview,
+  getReviews
 };

@@ -1,10 +1,16 @@
 const express = require("express");
 const asyncErrorHandler = require("../middlewares/asyncErrorHandler");
-const { createReview, likeReview } = require("../services/reviewService");
+const {
+  createReview,
+  likeReview,
+  getReviews
+} = require("../services/reviewService");
 const { error400sHandler } = require("../middlewares/errorHandlers");
 
 const reviewRouter = express.Router();
 reviewRouter.use(express.json());
+
+reviewRouter.get("/all/:store", asyncErrorHandler(getReviews));
 
 // to use when user wants to create a review or post for the store
 reviewRouter.post("/create/:id", asyncErrorHandler(createReview));

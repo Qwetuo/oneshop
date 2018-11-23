@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const ReviewSchema = new mongoose.Schema(
   {
     for: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Store"
+      type: String,
+      required: true
     },
     rating: Number,
     review: String,
