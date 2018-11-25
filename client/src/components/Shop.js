@@ -18,11 +18,13 @@ class Shop extends Component {
   }
 
   openModal = (storeRef, storeName) => {
-    this.props.fetchStoreReviews(storeRef)
-    this.setState({
-      isModalOpen: true,
-      storeName: storeName
-    });
+    if (!this.state.isModalOpen) {
+      this.props.fetchStoreReviews(storeRef);
+      this.setState({
+        isModalOpen: true,
+        storeName: storeName
+      });
+    }
   };
 
   closeModal = () => {
