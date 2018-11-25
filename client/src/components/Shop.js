@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 import ShopModal from "./ShopModal";
+import { connect } from "react-redux";
+import { fetchStoreReviews } from "../actions/reviewActions";
 
 class Shop extends Component {
   constructor() {
     super();
     this.state = {
       isModalOpen: false,
-      storeName: "",
-      storeReviews: []
+      storeName: ""
     };
   }
 
+  componentWillMount() {
+    this.props.fetchStoreReviews();
+  }
+
   openModal = (storeRef, storeName) => {
-    this.getStoreData(storeRef);
+    this.props.fetchStoreReviews(storeRef)
     this.setState({
       isModalOpen: true,
       storeName: storeName
@@ -24,25 +29,6 @@ class Shop extends Component {
     this.setState({
       isModalOpen: false
     });
-  };
-
-  getStoreData = async storeRef => {
-    const response = await fetch(`/api/review/all/${storeRef}`, {
-      method: "GET",
-      credentials: "include",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    });
-
-    if (response.ok) {
-      const storeReviews = await response.json();
-
-      this.setState({
-        storeReviews: storeReviews
-      });
-    }
   };
 
   render() {
@@ -71,7 +57,7 @@ class Shop extends Component {
             <ShopModal
               isOpen={this.state.isModalOpen}
               closeModal={this.closeModal}
-              storeReviews={this.state.storeReviews}
+              storeReviews={this.props.reviews}
               storeName={this.state.storeName}
             />
           </Card>
@@ -83,4 +69,11 @@ class Shop extends Component {
   }
 }
 
-export default Shop;
+const mapStateToProps = state => ({
+  reviews: state.reviews.items
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchStoreReviews }
+)(Shop);
