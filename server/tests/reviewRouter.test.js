@@ -79,17 +79,15 @@ describe("POST /api/review/create/:store", () => {
 
     expect(response.status).toBe(201);
     expect(response.body.message).toBe("review successfully logged");
+    expect(response.body.payload.for).toBe("ChIJp4zYJ6QZ2jER97uPLgjAX1U");
+    expect(response.body.payload.author.username).toBe("newreviewer1");
+    expect(response.body.payload.rating).toBe(Number(reqBody.rating));
+    expect(response.body.payload.review).toBe(reqBody.review);
+    expect(response.body.payload.image).toBe(reqBody.image);
 
     const storeReviews = await Review.find({
       for: "ChIJp4zYJ6QZ2jER97uPLgjAX1U"
-    })
-      .populate({ path: "author", select: "username" })
-      .populate({ path: "likes", select: "username" });
-
+    });
     expect(storeReviews.length).toBe(3);
-    expect(storeReviews[2].author.username).toBe("newreviewer1");
-    expect(storeReviews[2].rating).toBe(Number(reqBody.rating));
-    expect(storeReviews[2].review).toBe(reqBody.review);
-    expect(storeReviews[2].image).toBe(reqBody.image);
   });
 });

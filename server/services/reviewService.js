@@ -17,10 +17,15 @@ const createReview = async (req, res, next) => {
     image: req.body.image,
     author: req.user._id
   });
-  await newReview.save();
+  const savedReview = await newReview.save();
+  const payload = await Review.findById(savedReview._id).populate({
+    path: "author",
+    select: "username"
+  });
 
   res.status(201).json({
-    message: "review successfully logged"
+    message: "review successfully logged",
+    payload
   });
 };
 
