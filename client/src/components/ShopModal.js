@@ -82,6 +82,7 @@ class ShopModal extends Component {
                     icon="star"
                     defaultRating={review.rating}
                     maxRating={5}
+                    disabled
                   />
                   <Button floated="right" as="div" labelPosition="right">
                     <Button color="red">
