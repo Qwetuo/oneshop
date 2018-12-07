@@ -12,7 +12,8 @@ class AddReviewModal extends Component {
       review: "",
       image: "",
       rating: "",
-      message: ""
+      message: "",
+      user: localStorage.getItem("user")
     };
   }
 
@@ -20,6 +21,11 @@ class AddReviewModal extends Component {
   handleRate = (e, { rating }) => this.setState({ rating });
 
   handleSubmit = () => {
+    if (this.state.user === null) {
+      return this.setState({
+        message: "Please log in before submitting a review"
+      })
+    }
     if (this.state.review === "" || this.state.rating === "") {
       return this.setState({
         message:
@@ -35,6 +41,12 @@ class AddReviewModal extends Component {
 
     // yet to catch error message
     this.props.createStoreReview(this.props.storeRef, body);
+    this.setState({
+      review: "",
+      image: "",
+      rating: "",
+      message: "",
+    })
     this.props.closeModal();
   };
 
