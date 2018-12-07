@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require("./User");
 
 const ReviewSchema = new mongoose.Schema(
   {
@@ -12,12 +13,24 @@ const ReviewSchema = new mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
+      validate: {
+        validator(userId) {
+          return User.findById(userId);
+        },
+        message: "Invalid User ID"
+      }
     },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        validate: {
+          validator(userId) {
+            return User.findById(userId);
+          },
+          message: "Invalid User ID"
+        }
       }
     ]
   },
