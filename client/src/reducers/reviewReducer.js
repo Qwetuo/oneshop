@@ -1,7 +1,8 @@
-import { FETCH_STORE_REVIEWS } from '../actions/types';
+import { FETCH_STORE_REVIEWS, CREATE_STORE_REVIEW } from '../actions/types';
 
 const initialState = {
-  reviews: []
+  items: [],
+  item: {}
 };
 
 export default function(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function(state = initialState, action) {
         ...state,
         items: action.payload
       };
+      case CREATE_STORE_REVIEW:
+      return {
+        ...state,
+        item: action.payload
+      }
     default:
       return state;
   }
