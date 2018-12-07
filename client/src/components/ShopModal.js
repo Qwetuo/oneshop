@@ -6,9 +6,10 @@ import {
   Icon,
   ModalHeader,
   Button,
-  Label
+  Label,
+  Rating
 } from "semantic-ui-react";
-import AddReviewModal from "./AddReviewModal"
+import AddReviewModal from "./AddReviewModal";
 
 class ShopModal extends Component {
   constructor() {
@@ -50,11 +51,11 @@ class ShopModal extends Component {
             </Label>
           </Button>
           <AddReviewModal
-              isOpen={this.state.modalOpen}
-              closeModal={this.handleClose}
-              storeRef={this.props.storeRef}
-              storeName={this.props.storeName}
-              />
+            isOpen={this.state.modalOpen}
+            closeModal={this.handleClose}
+            storeRef={this.props.storeRef}
+            storeName={this.props.storeName}
+          />
         </ModalHeader>
         {this.props.storeReviews.length === 0 ? (
           <div>
@@ -77,7 +78,11 @@ class ShopModal extends Component {
                   <Card.Description>{review.review}</Card.Description>
                 </Card.Content>
                 <Card.Content extra>
-                  Rating: {review.rating} / 5
+                  <Rating
+                    icon="star"
+                    defaultRating={review.rating}
+                    maxRating={5}
+                  />
                   <Button floated="right" as="div" labelPosition="right">
                     <Button color="red">
                       <Icon name="thumbs up" />
