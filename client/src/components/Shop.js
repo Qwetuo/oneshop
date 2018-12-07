@@ -9,12 +9,15 @@ class Shop extends Component {
     super();
     this.state = {
       isModalOpen: false,
-      storeName: ""
+      storeName: "",
+      storeRef: ""
     };
   }
 
-  componentWillMount() {
-    this.props.fetchStoreReviews();
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.newReview.author) {
+      this.props.reviews.unshift(nextProps.newReview);
+    }
   }
 
   openModal = (storeRef, storeName) => {
@@ -22,7 +25,8 @@ class Shop extends Component {
       this.props.fetchStoreReviews(storeRef);
       this.setState({
         isModalOpen: true,
-        storeName: storeName
+        storeName,
+        storeRef
       });
     }
   };
@@ -61,6 +65,7 @@ class Shop extends Component {
               closeModal={this.closeModal}
               storeReviews={this.props.reviews}
               storeName={this.state.storeName}
+              storeRef={this.state.storeRef}
             />
           </Card>
         );
@@ -72,7 +77,8 @@ class Shop extends Component {
 }
 
 const mapStateToProps = state => ({
-  reviews: state.reviews.items
+  reviews: state.reviews.items,
+  newReview: state.reviews.item
 });
 
 export default connect(

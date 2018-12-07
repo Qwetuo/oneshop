@@ -8,6 +8,7 @@ import {
   Button,
   Label
 } from "semantic-ui-react";
+import AddReviewModal from "./AddReviewModal"
 
 class ShopModal extends Component {
   constructor() {
@@ -40,7 +41,7 @@ class ShopModal extends Component {
         <ModalHeader>
           {this.props.storeName}
           <Button floated="right" as="div" labelPosition="right">
-            <Button color="blue">
+            <Button color="blue" onClick={this.handleOpen}>
               <Icon name="add" />
               Add review
             </Button>
@@ -48,6 +49,12 @@ class ShopModal extends Component {
               {this.props.storeReviews.length}
             </Label>
           </Button>
+          <AddReviewModal
+              isOpen={this.state.modalOpen}
+              closeModal={this.handleClose}
+              storeRef={this.props.storeRef}
+              storeName={this.props.storeName}
+              />
         </ModalHeader>
         {this.props.storeReviews.length === 0 ? (
           <div>
