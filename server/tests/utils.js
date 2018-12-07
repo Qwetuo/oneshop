@@ -5,7 +5,7 @@ const mongod = new MongoMemoryServer();
 const setupMemoryServer = async () => {
   jest.setTimeout(100000);
   const uri = await mongod.getConnectionString();
-  await mongoose.connect(uri);
+  await mongoose.connect(uri, {useNewUrlParser: true});
 };
 
 const tearDownMemoryServer = () => {

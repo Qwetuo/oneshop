@@ -58,3 +58,38 @@ test("/api/review/all/:store should return all the reviews for the store with re
   expect(response.body[0].author.username).toBe("newreviewer1");
   expect(response.body[0].likes[0].username).toBe("newreviewer2");
 });
+
+describe("POST /api/review/create/:store", () => {
+  test("should return status 201 if authorised user create review and add a new review for params :store", async () => {
+    await setUpTestScenario();
+
+    const reqBody = {
+      rating: "1",
+      review: "testing review",
+      image: "link"
+    };
+
+    const agent = request.agent(app);
+    await agent
+      .post("/api/account/signin")
+      .send({ username: "newreviewer1", password: "password" });
+    const response = await agent
+      .post("/api/review/create/ChIJp4zYJ6QZ2jER97uPLgjAX1U")
+      .send(reqBody);
+
+    expect(response.status).toBe(201);
+    expect(response.body.message).toBe("review successfully logged");
+
+    const storeReviews = await Review.find({
+      for: "ChIJp4zYJ6QZ2jER97uPLgjAX1U"
+    })
+      .populate({ path: "author", select: "username" })
+      .populate({ path: "likes", select: "username" });
+
+    expect(storeReviews.length).toBe(3);
+    expect(storeReviews[2].author.username).toBe("newreviewer1");
+    expect(storeReviews[2].rating).toBe(Number(reqBody.rating));
+    expect(storeReviews[2].review).toBe(reqBody.review);
+    expect(storeReviews[2].image).toBe(reqBody.image);
+  });
+});
