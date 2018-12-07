@@ -2,6 +2,9 @@
   "name": "oneshop",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "10.4.0"
+  },
   "scripts": {
     "start": "concurrently \"cd server && node server.js\" \"cd client && npm start\"",
     "build": "cd client && npm run build",
