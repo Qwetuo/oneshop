@@ -1,5 +1,6 @@
 const express = require("express");
 const asyncErrorHandler = require("../middlewares/asyncErrorHandler");
+const { authenticateUser } = require("../middlewares/auth");
 const {
   createReview,
   likeReview,
@@ -12,8 +13,7 @@ reviewRouter.use(express.json());
 
 reviewRouter.get("/all/:store", asyncErrorHandler(getReviews));
 
-// to use when user wants to create a review or post for the store
-reviewRouter.post("/create/:id", asyncErrorHandler(createReview));
+reviewRouter.post("/create/:store", authenticateUser, asyncErrorHandler(createReview));
 
 // to use when a user wants to like a review written by another
 // futuretodo: route to get all like posts - to show wishlist

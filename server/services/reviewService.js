@@ -1,5 +1,5 @@
 const Review = require("../models/Review");
-const Store = require("../models/Store");
+// const Store = require("../models/Store");
 
 const getReviews = async (req, res, next) => {
   const storeReviews = await Review.find({ for: req.params.store })
@@ -10,13 +10,14 @@ const getReviews = async (req, res, next) => {
 
 //todo - write tests for services
 const createReview = async (req, res, next) => {
-  const newPost = await new Review.create({
-    for: req.param.id,
+  const newReview = new Review({
+    for: req.params.store,
     rating: req.body.rating,
     review: req.body.review,
     image: req.body.image,
     author: req.user._id
   });
+  await newReview.save();
 
   res.status(201).json({
     message: "review successfully logged"
