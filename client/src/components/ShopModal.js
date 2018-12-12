@@ -61,8 +61,8 @@ class ShopModal extends Component {
           <div>
             <h3>There are currently no reviews for this store.</h3>
             <p>
-              Feature for adding a new review is also not available yet, do
-              check out Kate Spade store card instead.
+              Login to start writing a review for the store. Or check out the
+              store card, Kate Spade, for reviews that have been seeded in.
             </p>
           </div>
         ) : (
