@@ -1,15 +1,8 @@
 import React, { Component } from "react";
-import MainContainer from "./MainContainer";
 import { connect } from "react-redux";
 import { updateSearchResults } from "../actions/searchActions";
 
 class Map extends Component {
-  constructor() {
-    super();
-    this.state = {
-    };
-  }
-
   componentDidMount = () => {
     this.renderMap();
   };
@@ -62,7 +55,6 @@ class Map extends Component {
     return (
       <main>
         <div id="map" />
-        <MainContainer results={this.state.results} />
       </main>
     );
   }

@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import SearchSegment from "./components/SearchSegment";
 import Map from "./components/Map";
 import AccountModal from "./components/AccountModal";
+import MainContainer from "./components/MainContainer";
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,7 @@ class App extends Component {
           />
           <Map />
           <SearchSegment />
+          <MainContainer />
         </div>
       </Provider>
     );
