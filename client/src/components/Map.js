@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import MainContainer from "./MainContainer";
+import { connect } from "react-redux";
+import { updateSearchResults } from "../actions/searchActions";
 
 class Map extends Component {
   constructor() {
     super();
     this.state = {
-      query: "wallet",
-      lat: 1.293813,
-      lng: 103.853438,
-      results: [],
-      finalResults: []
     };
   }
 
@@ -28,7 +25,7 @@ class Map extends Component {
 
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: this.state.lat, lng: this.state.lng },
+      center: { lat: this.props.search.lat, lng: this.props.search.lng },
       zoom: 18
     });
 
@@ -36,15 +33,13 @@ class Map extends Component {
 
     var service = new window.google.maps.places.PlacesService(map);
     const request = {
-      keyword: this.state.query,
-      location: { lat: this.state.lat, lng: this.state.lng },
+      keyword: this.props.search.query,
+      location: { lat: this.props.search.lat, lng: this.props.search.lng },
       radius: 500
     };
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        this.setState({
-          results: results
-        });
+        this.props.updateSearchResults(results);
         results.forEach(result => createMarker(result));
       }
     });
@@ -82,4 +77,15 @@ function loadScript(url) {
   index.parentNode.insertBefore(script, index);
 }
 
-export default Map;
+const mapStateToProps = state => ({
+  search: state.search
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateSearchResults: results => dispatch(updateSearchResults(results))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Map);

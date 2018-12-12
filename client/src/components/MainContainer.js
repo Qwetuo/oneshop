@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 import Shop from "./Shop";
+import { connect } from "react-redux";
 
 class MainContainer extends Component {
   constructor() {
@@ -14,11 +15,15 @@ class MainContainer extends Component {
     return (
       <div className="main-container">
         <Card.Group>
-          <Shop results={this.props.results} />
+          <Shop results={this.props.search.searchResults} />
         </Card.Group>
       </div>
     );
   }
 }
 
-export default MainContainer;
+const mapStateToProps = state => ({
+  search: state.search
+});
+
+export default connect(mapStateToProps)(MainContainer);
