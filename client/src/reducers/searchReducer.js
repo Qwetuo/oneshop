@@ -1,4 +1,4 @@
-import { CHANGE_SEARCH, GET_RESULTS } from '../actions/types';
+import { CHANGE_SEARCH, GET_RESULTS } from "../actions/types";
 
 const initialState = {
   query: "store",
@@ -12,13 +12,19 @@ export default function(state = initialState, action) {
     case CHANGE_SEARCH:
       return {
         ...state,
-        query: action.query
+        query: action.payload.query,
+        lat: action.payload.location.lat
+          ? action.payload.location.lat
+          : state.lat,
+        lng: action.payload.location.lng
+          ? action.payload.location.lng
+          : state.lng
       };
     case GET_RESULTS:
       return {
         ...state,
         searchResults: action.results
-      }
+      };
     default:
       return state;
   }

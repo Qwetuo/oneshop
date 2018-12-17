@@ -33,8 +33,8 @@ class Map extends Component {
     var service = new window.google.maps.places.PlacesService(map);
     const request = {
       keyword: this.props.search.query,
-      location: { lat: this.props.search.lat, lng: this.props.search.lng },
-      radius: 500
+      location: map.getCenter(),
+      radius: 400
     };
     service.nearbySearch(request, (results, status) => {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
