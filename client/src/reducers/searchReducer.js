@@ -1,7 +1,7 @@
 import { CHANGE_SEARCH, GET_RESULTS } from '../actions/types';
 
 const initialState = {
-  query: "wallet",
+  query: "store",
   searchResults: [],
   lat: 1.293813,
   lng: 103.853438

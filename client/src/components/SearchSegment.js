@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Grid, Icon, Segment, Select, Input } from "semantic-ui-react";
 import categories from "../categoryOfStores";
+import { connect } from "react-redux";
+import { changeSearch } from "../actions/searchActions";
 
 class SearchSegment extends Component {
   constructor() {
@@ -14,7 +16,7 @@ class SearchSegment extends Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleSubmit = e => {
-    console.log(this.state);
+    this.props.changeSearch(this.state.category);
   };
 
   render() {
@@ -24,9 +26,9 @@ class SearchSegment extends Component {
           <Segment color="blue" raised>
             <Grid columns={3} stackable textAlign="center">
               <div>
-                <Icon size="big" color="purple" name="shopping bag" />
+                <Icon size="big" color="blue" name="shopping bag" />
                 <Select
-                  placeholder="Shop for Category (fixed)"
+                  placeholder="Search by Category"
                   options={categories}
                   name="category"
                   value={this.state.category}
@@ -49,4 +51,11 @@ class SearchSegment extends Component {
   }
 }
 
-export default SearchSegment;
+const mapDispatchToProps = dispatch => ({
+  changeSearch: query => dispatch(changeSearch(query))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SearchSegment);

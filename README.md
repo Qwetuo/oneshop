@@ -9,8 +9,8 @@ Mall and store owners can also boost interest by promoting on deals or providing
 
  Prototype Scope (Current)
  -
- Because of time restrictions, the app only supports a (fixed) search on shop category (of wallet stores) near the area at Raffles City. \
- It renders a list of search result which shows basic information of a store from google map api (e.g. their location, reference and rating). Clicking on any of the shop's card opens up a modal that shows reviews that others have written for the store on the site. (Currently only Kate Spade store have seeded data). \
+ The app currently only supports search near the area at Raffles City. \
+ It renders a list of search result which shows basic information of a store from google map api (e.g. their location, reference and rating). Clicking on any of the shop's card opens up a modal that shows reviews that others have written for the store on the site. (To check out some of the seeded data, search for wallet and click on the Kate Spade card). \
  Have also added functionality for users who are logged in to create new review for the stores.
  
  

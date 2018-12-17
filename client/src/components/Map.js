@@ -7,6 +7,12 @@ class Map extends Component {
     this.renderMap();
   };
 
+  componentWillReceiveProps = nextProps => {
+    if (this.props.search.query !== nextProps.search.query) {
+      this.renderMap();
+    }
+  };
+
   renderMap = () => {
     loadScript(
       `https://maps.googleapis.com/maps/api/js?key=${
