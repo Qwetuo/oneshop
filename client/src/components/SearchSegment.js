@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { Grid, Icon, Search, Segment, Select } from "semantic-ui-react";
-
-const options = [
-  {
-    key: "wallet",
-    value: "wallet",
-    text: "wallet"
-  }
-];
+import { Grid, Icon, Segment, Select, Input } from "semantic-ui-react";
+import categories from "../categoryOfStores";
 
 class SearchSegment extends Component {
+  constructor() {
+    super();
+    this.state = {
+      category: "",
+      place: ""
+    };
+  }
+
+  handleChange = (e, { name, value }) => this.setState({ [name]: value });
+
+  handleSubmit = e => {
+    console.log(this.state);
+  };
+
   render() {
     return (
       <div className="search-segment-container">
@@ -20,11 +27,20 @@ class SearchSegment extends Component {
                 <Icon size="big" color="purple" name="shopping bag" />
                 <Select
                   placeholder="Shop for Category (fixed)"
-                  options={options}
+                  options={categories}
+                  name="category"
+                  value={this.state.category}
+                  onChange={this.handleChange}
                 />
               </div>
               <h5>at</h5>
-              <Search placeholder="Fixed Coord: Raffles City" />
+              <Input
+                name="place"
+                onChange={this.handleChange}
+                value={this.state.place}
+                placeholder="Search..."
+              />
+              <Icon name="search" circular link onClick={this.handleSubmit} />
             </Grid>
           </Segment>
         </div>
